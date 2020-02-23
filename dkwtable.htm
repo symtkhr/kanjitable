@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>諸橋大漢和辞典 収録漢字 一覧</title>
+<script src="jquery-2.1.4.js"></script>
+<script src="dkw2ucs_update.js"></script>
+<script src="cjkcompat.js"></script>
+<script src="dkwtable.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+  table.layout, table.layout td { border: none;  }
+  table { border: solid 1px black; border-collapse: collapse; }
+  th,td {border: solid 1px black; padding:3px; }
+  th { background-color: #ccf; }
+  .cell { cursor:pointer; }
+  .cell span.h { font-size:50px; line-height:50px; width:50px;
+  display: block; font-family: HanaMinA, HanaMinB; text-align:center; height: 50px; }
+  .cell span.c, #listmenu a {
+      font-size:13px; line-height:13px; font-family:monospace;
+      text-align:left;
+  }
+  .cell span.d { font-size:30px; line-height:30px; display: block; color: #444; }
+  body { background-color: #f7f7f7; }
+  a:link, a:visited, #listmenu span { color: #446644; }
+  a:hover, #listmenu span:hover { background-color: #dddddd; color: #112244; }
+  a.selected { color:black; text-decoration:none; background-color:#fc8; }
+  div.remarks span {display: inline-block; }
+  div.remarks {padding:4px; top:0;left:30px;position: absolute;  z-index:1; background-color:#ccf; border:1px solid gray }
+  #list .content {display:block;  border:none; padding:0; }
+  #list .content div {display: inline-block; border:solid black 1px; padding:3px; }
+  #listmenu span.selected { background-color: #fdc; }
+  #listmenu span { cursor: pointer; text-decoration:underline; }
+</style>
+</head>
+
+<body>
+<h2>●諸橋大漢和辞典 収録漢字 一覧</h2>
+
+<div id="ucs" style="position:fixed;top:0;right:0; background-color:#cdf; z-index:2;"></div>
+<hr />
+
+<div id="listmenu">
+  <div id="pager"></div>
+  <span id="dash">ダッシュ付き</span>
+  <span id="missing">欠番</span>
+  <span id="undefined">UCS未定義</span>
+  UCS統合(<span id="unified">異体字セレクタなし</span>
+  <span id="undefvs">異体字セレクタ未定義</span>
+  <span id="vs">異体字セレクタあり</span>
+  <span id="duplicated">重複</span>)
+  <span id="multiple">複数のUCS表現</span>
+  <span id="search">検索</span>
+</div>
+<div id="list">
+  <table id="cjktable" class="content"></table>
+  <div id="content_search" class="content">
+    検索：<input id="searchbar"><br />
+    <span id="searchres"></span>
+  </div>
+</div>
+
+<hr />
+
+<ul>
+  <li>参考文献:
+    <a href="https://mojikiban.ipa.go.jp/1311.html">MJ文字情報一覧表</a> (Ver.005.02, 2018-01版),
+    <a href="http://kanji-database.sourceforge.net/dict/daikanwa/">大漢和辞典データベース</a>(2017-09-20版)
+  <li>推奨フォント: <a href="http://fonts.jp/hanazono/">花園明朝</a>
+</ul>
+
+<hr>
+</body>
+</html>
