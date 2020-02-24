@@ -2,11 +2,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>諸橋大漢和辞典 収録漢字 一覧</title>
-<script src="jquery-2.1.4.js"></script>
-<script src="dkw2ucs_update.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="cjkcompat.js"></script>
 <script src="dkwtable.js"></script>
-<link rel="stylesheet" href="style.css">
 <style>
   table.layout, table.layout td { border: none;  }
   table { border: solid 1px black; border-collapse: collapse; }
@@ -14,12 +12,14 @@
   th { background-color: #ccf; }
   .cell { cursor:pointer; }
   .cell span.h { font-size:50px; line-height:50px; width:50px;
-  display: block; font-family: HanaMinA, HanaMinB; text-align:center; height: 50px; }
-  .cell span.c, #listmenu a {
+		 display: block; font-family: HanaMinA, HanaMinB; text-align:center; height: 50px; }
+  .cell span.c, #listmenu a, .cell span.d {
       font-size:13px; line-height:13px; font-family:monospace;
       text-align:left;
   }
-  .cell span.d { font-size:30px; line-height:30px; display: block; color: #444; }
+  .h .other { z-index:2; left:40px; position:absolute; border:1px solid gray; padding:2px; display:none; }
+  .cell .h .ucs { display: inline-block; width:50px;}
+  .cell span.d { background-color: #fdb; }
   body { background-color: #f7f7f7; }
   a:link, a:visited, #listmenu span { color: #446644; }
   a:hover, #listmenu span:hover { background-color: #dddddd; color: #112244; }
@@ -30,13 +30,14 @@
   #list .content div {display: inline-block; border:solid black 1px; padding:3px; }
   #listmenu span.selected { background-color: #fdc; }
   #listmenu span { cursor: pointer; text-decoration:underline; }
+  #listmenu, #list {display:none;}
 </style>
 </head>
 
 <body>
 <h2>●諸橋大漢和辞典 収録漢字 一覧</h2>
 
-<div id="ucs" style="position:fixed;top:0;right:0; background-color:#cdf; z-index:2;"></div>
+<div id="ucs" style="position:fixed;top:0;right:0; background-color:#fdc; z-index:2;">読み込み中...</div>
 <hr />
 
 <div id="listmenu">
@@ -44,10 +45,9 @@
   <span id="dash">ダッシュ付き</span>
   <span id="missing">欠番</span>
   <span id="undefined">UCS未定義</span>
-  UCS統合(<span id="unified">異体字セレクタなし</span>
-  <span id="undefvs">異体字セレクタ未定義</span>
-  <span id="vs">異体字セレクタあり</span>
-  <span id="duplicated">重複</span>)
+  UCS統合(<span id="unified">同一符号化</span>
+  <span id="duplicated">重複</span>
+  <span id="vs">異体字セレクタ分離</span>)
   <span id="multiple">複数のUCS表現</span>
   <span id="search">検索</span>
 </div>
@@ -67,7 +67,7 @@
     <a href="http://kanji-database.sourceforge.net/dict/daikanwa/">大漢和辞典データベース</a>(2017-09-20版)
   <li>推奨フォント: <a href="http://fonts.jp/hanazono/">花園明朝</a>
 </ul>
-
-<hr>
+<hr />
+<textarea style="display:none;" id="hoge"></textarea>
 </body>
 </html>
