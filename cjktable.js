@@ -21,10 +21,10 @@ window.onload = () => {
     const redraw = (st) => {
         if (!st) st = cjkrange[0][1];
         $id("cjktable").innerHTML = "";
-        for (var i = 0; i < 16; i++) {
+        for (let i = 0; i < 16; i++) {
             let $tr = $new("tr");
             $id("cjktable").appendChild($tr);
-            for (var j = 0; j < 16; j++) {
+            for (let j = 0; j < 16; j++) {
                 $tr.appendChild($new("td"));
             }
         }
@@ -42,7 +42,7 @@ window.onload = () => {
 
     const pager = (start, end, $div) => {
         let st = parseInt(start / 0x100) * 0x100;
-        for (var i = st; i < end; i += 0x100) {
+        for (let i = st; i < end; i += 0x100) {
             let st = parseInt(i / 0x100).toString(16);
 
             let $a = $new("a");

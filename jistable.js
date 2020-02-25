@@ -1445,10 +1445,10 @@ window.onload = () => {
     
     const redraw = (key) => {
         $id("jistable").innerHTML = "";
-        for (var i = 0; i < 6; i++) {
+        for (let i = 0; i < 6; i++) {
             let $tr = $new("tr");
             $id("jistable").appendChild($tr);
-            for (var j = 0; j < 16; j++) {
+            for (let j = 0; j < 16; j++) {
                 $tr.appendChild($new("td"));
             }
         }
@@ -1491,13 +1491,13 @@ window.onload = () => {
         $id("pager").textContent = "";
 
         [1, 2].forEach(men => {
-            var $div = $new("div");
+            let $div = $new("div");
             $id("pager").appendChild($div);
             let $h = $new("h4");
             $h.textContent = men + "面";
             $div.appendChild($h);
 
-            for (var i = 0; i < 94; i++) {
+            for (let i = 0; i < 94; i++) {
                 let ku = ("0" + (i + 1).toString()).substr(-2);
                 let $a = $new("a");
                 $a.textContent = ku;
