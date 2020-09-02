@@ -13,13 +13,13 @@
   .cell { cursor:pointer; }
   .cell span.h { font-size:50px; line-height:50px; width:50px;
 		 display: block; font-family: HanaMinA, HanaMinB; text-align:center; height: 50px; }
-  .cell span.c, #listmenu a, .cell span.d {
+  .cell span.c, #pager a, .cell span.d {
       font-size:13px; line-height:13px; font-family:monospace;
       text-align:left;
   }
   .h .other { z-index:2; left:40px; position:absolute; border:1px solid gray; padding:2px; display:none; }
+  .cell span.r { position:absolute; right:0; bottom:0; height:15px; width:13px; }
   .cell .h .ucs { display: inline-block; width:50px;}
-  .cell span.d { background-color: #fdb; }
   body { background-color: #f7f7f7; }
   a:link, a:visited, #listmenu span { color: #446644; }
   a:hover, #listmenu span:hover { background-color: #dddddd; color: #112244; }
@@ -28,28 +28,41 @@
   div.remarks {padding:4px; top:0;left:30px;position: absolute;  z-index:1; background-color:#ccf; border:1px solid gray }
   #list .content {display:block;  border:none; padding:0; }
   #list .content div {display: inline-block; border:solid black 1px; padding:3px; }
-  #listmenu span.selected { background-color: #fdc; }
+  #listmenu a.selected { background-color: #fdc; }
   #listmenu span { cursor: pointer; text-decoration:underline; }
   #listmenu, #list {display:none;}
+  #ucs { position:fixed;top:0;right:0; background-color:#fff; z-index:2; }
+  .ref span { display:inline-block; border:1px solid #888; border-radius: 10px; padding:0 5px; }
+  //#listmenu { height: 1.5em; overflow:hidden; }
+
+  .cell .r span { width:5px; height:5px; display:inline-block; border-radius:50%; }
+  .ref .jmj, .cell .jmj { background-color:#f7f7f7; }
+  .ref .ipa, .cell .ipa { background-color:#cdc; }
+  .ref .kdb, .cell .kdb { background-color:#fdc; }
+  .ref .prv, .cell .prv { background-color:#bee; }
+  .cell .r .none { background-color:transparent; }
+
 </style>
 </head>
 
 <body>
 <h2>●諸橋大漢和辞典 収録漢字 一覧</h2>
 
-<div id="ucs" style="position:fixed;top:0;right:0; background-color:#fdc; z-index:2;">読み込み中...</div>
+<div id="ucs" class="ref">読み込み中...</div>
 <hr />
 
 <div id="listmenu">
   <div id="pager"></div>
-  <span id="dash">ダッシュ付き</span>
-  <span id="missing">欠番</span>
-  <span id="undefined">UCS未定義</span>
-  UCS統合(<span id="unified">同一符号化</span>
-  <span id="duplicated">重複</span>
-  <span id="vs">異体字セレクタ分離</span>)
-  <span id="multiple">複数のUCS表現</span>
-  <span id="search">検索</span>
+  <div id="submenu">
+    <a href="#q=dash">ダッシュ付き</a>
+    <a href="#q=missing">欠番</a>
+    <a href="#q=undefined">UCS未定義</a>
+    UCS統合(<a href="#q=unified">同一符号化</a>
+    <a href="#q=duplicated">重複</a>
+    <a href="#q=vs">異体字セレクタ分離</a>)
+    <a href="#q=multiple">複数のUCS表現</a>
+    <a href="#q=search">検索</a>
+  </div>
 </div>
 <div id="list">
   <table id="cjktable" class="content"></table>
@@ -62,12 +75,13 @@
 <hr />
 
 <ul>
-  <li>参考文献:
-    <a href="https://mojikiban.ipa.go.jp/1311.html">MJ文字情報一覧表</a> (Ver.005.02, 2018-01版),
-    <a href="http://kanji-database.sourceforge.net/dict/daikanwa/">大漢和辞典データベース</a>(2017-09-20版)
+  <li class="ref">参考文献:
+    <span class="jmj"><a href="https://mojikiban.ipa.go.jp/1311.html">MJ文字情報一覧表</a> (Ver.005.02, 2018-01版)</span>
+    <span class="ipa"><a href="https://mojikiban.ipa.go.jp/lab/#MJIOldVer">モジラボ</a> 字辞典UCS対応情報 - 大漢和辞典 (2016-08-30版)</span>
+    <span class="kdb"><a href="http://kanji-database.sourceforge.net/dict/daikanwa/">大漢和辞典データベース</a> (2017-09-20版)</span>
+    <span class="prv">その他(独自収集)</span>
   <li>推奨フォント: <a href="http://fonts.jp/hanazono/">花園明朝</a>
 </ul>
 <hr />
-<textarea style="display:none;" id="hoge"></textarea>
 </body>
 </html>
