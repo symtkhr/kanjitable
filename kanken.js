@@ -39,7 +39,7 @@ $(function() {
         let level = $("#tab li.selected").attr("id").split("_").pop();
         $("#desc_" + level).show();
         $("#list li").hide();
-        $(".tips")[(level < "2") ? "show" : "hide"]();
+        $(".tips")[(level == "1p" || level == "1") ? "show" : "hide"]();
         
         let $chars = $("#list li.l" + level).show();
         $("#description .count").show().text($chars.size());

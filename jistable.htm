@@ -5,12 +5,14 @@
 <script src="jistable.js"></script>
 <style>
   table { border: solid 1px black; border-collapse: collapse; }
-  th,td { border: solid 1px black; padding:3px; }
-  th { background-color: #ccf; }
-  td span { font-size:50px; line-height:50px; width:50px; display: block; text-align:center; }
-  td span.c, #pager a { font-size:13px; line-height:13px; font-family:monospace; }
-  td.X0213 span.c { background-color: #fd8; }
-  td.X0212 span.c { background-color: #ada; }
+  th, td, #result div { border: solid 1px black; padding:3px; }
+  td.th { background-color: #ace; }
+  .JISX, td.th, #pager a { font-size:13px; line-height:13px; font-family:monospace; }
+  .JISX span { display: block; text-align:center; }
+  .JISX span.h { font-size:50px; line-height:50px; width:50px; }
+  .JISX span.X0213 { background-color: #fd8; }
+  .JISX span.X0212 { background-color: #ada; }
+  .JISX.undef { background-color: gray; }
 
   body { background-color: #f7f7f7; }
   a:link, a:visited { color: #446644; }
@@ -20,6 +22,7 @@
   #pager { width:370px; }
   #pager div { margin:10px 0 0 10px; }
   #pager h4 { border-radius:20px; display:inline-block; border:1px solid #ccc; padding:0 6px; margin:0; font-weight:normal; background-color:#fdc; }
+  #result { display: flex; flex-wrap: wrap; }
 </style>
 </head>
 
@@ -44,6 +47,11 @@
     <label><input type="checkbox" id="chx0212" checked>JIS X 0212</label>
     <div id="pager"></div>
   </div>
+</div>
+<hr/>
+<div id="searchbox">
+  検索: <input type="textbox" id="search" style="width:500px;" />
+  <div id="result"></div>
 </div>
 <hr>
 </body>

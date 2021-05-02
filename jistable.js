@@ -1385,7 +1385,9 @@ window.onload = () => {
         switch(codetype) {
         case "unicode":
             if (!unicode) return "-";
-            return ("U+" + unicode.toString(16));
+            return (typeof(unicode) == "string") ?
+                Array.from(unicode).map(v => "U+" + v.codePointAt(0).toString(16)).join("\n")
+                : ("U+" + unicode.toString(16));
         case "kuten":
             return (mkt.filter(e => e).join("-"));
         case "sjis":
@@ -1403,7 +1405,7 @@ window.onload = () => {
         const c1 = parseInt(seq / 188);
         const c2 = seq % 188;
         const p2 = ((m, k) => {
-            if (m == 1) return 0;
+            if (m != 2) return 0;
             if (k <= 5) return 0x6f;
             if (k <= 15) return 0x6c;
             return 0xd;
@@ -1445,6 +1447,7 @@ window.onload = () => {
     
     const redraw = (key) => {
         $id("jistable").innerHTML = "";
+
         for (let i = 0; i < 6; i++) {
             let $tr = $new("tr");
             $id("jistable").appendChild($tr);
@@ -1453,37 +1456,67 @@ window.onload = () => {
             }
         }
         if (!jistable[key]) key = "p1_01";
+
+        $q("a.selected").forEach($a => $a.classList.remove("selected"));
+        $q("a").find($a => $a.href.split("#").pop() == key).classList.add("selected");
+
         $q("#jistable td").forEach(($td, idx) => {
-            if (idx == 0 || 94 < idx) {
-                let $c = $new("span");
-                $c.classList.add("c")
-                $c.textContent = key.substr(1).split("_").join("面") + "区";
-                $td.appendChild($c);
-                $td.style.backgroundColor = "#ace";
-                return;
+            if ((0 < idx) && (idx <= 94)) {
+                return draw_char($td,
+                                 jistable[key][idx - 1],
+                                 [(key + "_" + idx)]);
             }
             let $c = $new("span");
+            $c.classList.add("c")
+            $c.textContent = key.slice(1).split("_").join("面") + "区";
+            $td.appendChild($c);
+            $td.classList.add("th");
+        });
+        draw_result();
+    };
+
+    const draw_char = ($dom, uni, jis) => {
+        $dom.classList.add("JISX");
+        let $c = $new("span");
+        $c.classList.add('h');
+        $dom.appendChild($c);
+        
+        jis.map((code, i) => {
             let $code = $new("span");
             $code.classList.add('c');
-            $td.appendChild($c);
-            $td.appendChild($code);
+            $dom.appendChild($code);
+            let mkt = code.slice(1).split("_").map(e => parseInt(e, 10));
+            if (uni) $code.classList.add(identify(mkt[0], mkt[1], mkt[2]));
+            $code.textContent = showcode($name("code").find($radio => $radio.checked).value, uni, mkt);
+        });
+        
+        if (!uni) {
+            $c.innerHTML = "<br />";
+            $dom.classList.add("undef");
+            return;
+        }
 
-            let c = jistable[key][idx - 1];
-            let mkt = (key + "_" + idx).slice(1).split("_").map(e => parseInt(e, 10));
-            $code.textContent = showcode($name("code").find($radio => $radio.checked).value, c, mkt);
+        if (typeof(uni) == "number") {
+            $c.innerHTML = "&#" + uni + ";";
+            return;
+        }
+        $c.textContent = uni;
+    };
 
-            if (!c) {
-                $c.innerHTML = "<br>";
-                $td.style.backgroundColor = "gray";
-                return;
-            }
+    const draw_result = () => {
+        $id("result").innerHTML = "";
+        Array.from($id("search").value).map(c => {
+            let uni = c.codePointAt(0);
+            if (uni < 0x80) return;
 
-            $td.classList.add(identify(mkt[0], mkt[1], mkt[2]));
-            if (typeof(c) == "number") {
-                $c.innerHTML = "&#" + c + ";";
-                return;
-            }
-            $c.textContent = c;
+            let jis = Object.keys(jistable).map(key => {
+                let idx = jistable[key].indexOf(uni) + 1;
+                return idx ? (key + "_" + idx) : null;
+            }).filter(v => v);
+
+            let $div = $new("div");
+            $id("result").appendChild($div);
+            return draw_char($div, uni, jis);
         });
     };
 
@@ -1498,7 +1531,7 @@ window.onload = () => {
             $div.appendChild($h);
 
             for (let i = 0; i < 94; i++) {
-                let ku = ("0" + (i + 1).toString()).substr(-2);
+                let ku = ("0" + (i + 1).toString()).slice(-2);
                 let $a = $new("a");
                 $a.textContent = ku;
                 $a.setAttribute("href", "#p" + men + "_" + ku);
@@ -1516,7 +1549,7 @@ window.onload = () => {
         $div.appendChild($h);
 
         [13, 89, 90, 91, 92, 115, 116, 117, 118, 119].forEach(c => {
-            let ku = ("0" + (c).toString()).substr(-3);
+            let ku = ("0" + (c).toString()).slice(-3);
             let $a = $new("a");
             $a.textContent = c;
             $a.setAttribute("href", "#w_" + ku);
@@ -1524,15 +1557,6 @@ window.onload = () => {
 
             $div.innerHTML += " ";
             $div.appendChild($a);
-        });
-
-        $tag("a").forEach($a => {
-            $a.onclick = (e) => {
-                $q("a.selected").forEach($a => $a.classList.remove("selected"));
-                e.target.classList.add("selected");
-                let val = e.target.getAttribute("href");
-                redraw(val.split("#").pop());
-            };
         });
     };
 
@@ -1552,5 +1576,10 @@ window.onload = () => {
 
     pager();
     redraw(location.href.split("#").pop());
+    window.addEventListener('hashchange', () => { redraw(location.href.split("#").pop()); });
 
+    $id("search").onkeydown = function(e) {
+        if (e.keyCode != 13) return;
+        draw_result();
+    };
 };
