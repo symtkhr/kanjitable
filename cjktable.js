@@ -8,6 +8,8 @@ window.onload = () => {
         ["統合拡張D", 0x2b740, 0x2b81d],
         ["統合拡張E", 0x2b820, 0x2cea1],
         ["統合拡張F", 0x2ceb0, 0x2ebef],
+        ["統合拡張G", 0x30000, 0x3134f],
+        ["統合拡張H", 0x31350, 0x323af],
         ["互換",       0xf900,  0xfaff],
         ["互換補助",  0x2f800, 0x2fa1d],
     ];
@@ -19,7 +21,7 @@ window.onload = () => {
     const $name = e => [... document.getElementsByName(e)];
 
     const redraw = (st) => {
-        if (!st) st = cjkrange[0][1];
+        st = (0x100 * parseInt(st, 16)) || cjkrange[0][1];
         $id("cjktable").innerHTML = "";
         for (let i = 0; i < 16; i++) {
             let $tr = $new("tr");
@@ -37,7 +39,23 @@ window.onload = () => {
             $char.innerHTML = "&#" + code + ";";
             $code.textContent = "U+" + code.toString(16);
             $code.classList.add('c');
+            cjkcompatible(code, $code);
         });
+        $q("#pager a.selected").forEach($a => $a.classList.remove("selected"));
+        $q("#pager a").forEach($a => {
+            let hash = $a.href.split("#").pop();
+            if (parseInt(hash, 16) * 0x100 == st) $a.classList.add("selected");
+        });
+    };
+
+    const cjkcompatible = (code, $dom) => {
+        let head = 0;
+        if (0xf900 <= code && code < 0xfb00) head = 0xf900;
+        if (0x2f800 <= code && code < 0x2fb00) head = 0x2f800;
+        if (!head) return;
+        let base = cjkcompat[head < 0x10000 ? 0 : 1][code - head];
+        if (!base) return;
+        $dom.textContent += "\n(=" + base.toString(16) + ")";
     };
 
     const pager = (start, end, $div) => {
@@ -52,15 +70,6 @@ window.onload = () => {
             $div.innerHTML += " ";
             $div.appendChild($a);
         }
-        $q("#pager a").forEach($a => {
-            $a.onclick = (e) => {
-                $q("#pager a.selected").forEach($a => $a.classList.remove("selected"));
-                e.target.classList.add("selected");
-                let str = e.target.getAttribute("href");
-                let val = parseInt(str.split("#").pop(), 16);
-                redraw(val * 0x100);
-            };
-        });
     };
 
     cjkrange.forEach(table => {
@@ -72,7 +81,6 @@ window.onload = () => {
         pager(table[1], table[2], $div);
     });
 
-    let str = location.href.split("#").pop();
-    let val = parseInt(str, 16);
-    redraw(val * 0x100);
+    redraw(location.hash.slice(1));
+    window.addEventListener('hashchange', () => { redraw(location.hash.slice(1)); });
 };
