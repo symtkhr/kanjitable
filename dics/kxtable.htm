@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>康煕字典 収録漢字 一覧</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="cjkcompat.js"></script>
+<script src="kxtable.js"></script>
+<style>
+  table.layout, table.layout td { border: none;  }
+  table { border: solid 1px black; border-collapse: collapse; }
+  th,td {border: solid 1px black; padding:3px; }
+  th { background-color: #ccf; }
+  .cell { cursor:pointer; }
+  .cell span.h { font-size:50px; line-height:50px; width:50px;
+		 display: block; font-family: HanaMinA, HanaMinB; text-align:center; height: 50px; }
+  .cell span.c, #listmenu, .cell span.d {
+      font-size:13px; line-height:17px; font-family:monospace;
+      text-align:left;
+  }
+  .h .other { z-index:2; left:40px; position:absolute; border:1px solid gray; padding:2px; display:none; }
+  .cell .h .ucs { display: inline-block; width:50px;}
+  .cell span.d { background-color: #fdb; }
+  body { background-color: #f7f7f7; }
+  a:link, a:visited, #listmenu span { color: #446644; }
+  a:hover, #listmenu span:hover { background-color: #dddddd; color: #112244; }
+  a.selected { color:black; text-decoration:none; background-color:#fc8; }
+  div.remarks span {display: inline-block; }
+  div.remarks {padding:4px; top:0;left:30px;position: absolute;  z-index:1; background-color:#ccf; border:1px solid gray }
+  #list .content {display:block;  border:none; padding:0; }
+  #list .content div {display: inline-block; border:solid black 1px; padding:3px; }
+  #listmenu span.selected { background-color: #fdc; }
+  #listmenu span { cursor: pointer; text-decoration:underline; }
+  #listmenu, #list {display:none;}
+  #ucs { position:fixed;top:0;right:0; background-color:#fdc; z-index:2; }
+  #ucs span { display:inline-block; border:1px solid #888; border-radius: 10px; padding:0 5px; }
+  #ucs span.p { background-color:#bee; }
+  #ucs span.ipa { background-color:#fdc; }
+  #ucs span.mj { background-color:#eee; }
+  #ucs span.k { background-color:#cdc; }
+  #list h3 { width:100%; background-color:#ccf; margin:0; font-weight:normal; font-size:14px; }
+</style>
+</head>
+
+<body>
+<h2>●康煕字典 収録漢字 一覧</h2>
+
+<div id="ucs">読み込み中...</div>
+<hr />
+
+<div id="listmenu">
+  <div id="pager"></div>
+  UCS統合(<a href="#unified">同一符号化</a>
+  <a href="#vs">異体字セレクタ分離</a>)
+  <a href="#search">検索</a>
+</div>
+<div id="list">
+  <div id="content_search" class="content">
+    検索：<input id="searchbar"><br />
+    <span id="searchres"></span>
+  </div>
+</div>
+
+<hr />
+
+<ul>
+  <li>参考文献:
+    <a href="https://kanji-database.sourceforge.net/dict/kangxi.html">康煕字典データベース</a> (2015-11-09版), 
+    <a href="https://www.kangxizidian.com/">康熙字典網上版</a>
+  <li>推奨フォント: <a href="http://fonts.jp/hanazono/">花園明朝</a>
+</ul>
+<hr />
+</body>
+</html>

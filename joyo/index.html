@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=.7, maximum-scale=1">
+<title>常用漢字表</title>
+<style>
+h1 {
+  padding:5px 5px;
+  margin:5px 0;
+  background-color: #bdb;
+  font-size: 25px;
+}
+h2 {
+  background-color:#fdc;
+  margin:0;
+  font-size:18px;
+}
+h3 {
+  margin: 3px;
+  padding: 0 5px;
+  font: 15px normal;
+  border:1px solid orange;
+  background-color: #edb;
+  border-radius:15px;
+  display:inline-block;
+}
+#tab.main a:first-child {
+    background-color: #6f6;
+}
+
+#tab.appendix a:nth-child(2) {
+    background-color: #6f6;
+}
+#show_histable.shown {
+    background-color:#6f6;
+}
+.freq {
+  font-size:10px;
+}
+.kanji .id {
+    font-size:10pt;
+    display:block;
+}
+#tab a {
+    display:inline-block;
+    border: 1px solid gray;
+    background-color: #dfd;
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+    padding: 4px;
+    text-decoration:none;
+    border-radius: 10px;
+}
+
+#clist, #wlist { display:flex; flex-wrap: wrap; }
+#clist .kanji, #wlist .word { display: block; border: 1px solid green; width: 200px; line-height: 25px; margin: 3px; }
+.head { display:flex; flex-wrap:wrap; background-color:#ded; padding:2px; min-height:50px; }
+#wlist .head { background-color:#eed; }
+.grade { text-align:right; line-height:15px; flex:1; display:block; }
+.read { line-height:15px; padding:2px; }
+.c,.w { display: block; text-align:center; }
+.c a,.w a { display: inline-block;
+    background-color: #bcb;
+    font-size:35px;
+    line-height:35px;
+    padding: 2 2px;
+    text-decoration:none;
+    color: #311;
+    font-family: serif;
+    margin: 1px;
+     }
+#wlist .w a { font-size: 30px; background-color: #ccb; }
+.grade a, .read a { margin:1px; padding:1px; display:inline-block; text-align:center; color: #113; text-decoration:none; }
+.grade a { background-color: #9c9; border-radius:7px; }
+.read a { background-color: #ddd; }
+.read a.x::before { content:"*"; }
+.read a.h::before { content:"高"; border:1px solid #080; color:#080; border-radius:50%; font-size:70%; padding:1px; }
+.read a.j::before { content:"中"; border:1px solid #080; color:#080; border-radius:50%; font-size:70%; padding:1px; }
+span.y { font-size: 10px; display:block; line-height:10px; color:#060; }
+.kanji.obsolete .c a, a.obsolete, #wlist .w.obsolete a { color: gray; background-color: white; }
+.c a:focus {color:red;}
+a {cursor:pointer; }
+  table { border: solid 1px black; border-collapse: collapse; }
+  th,td {border: solid 1px black; padding:3px;}
+  th { background-color: #9c9; }
+  #events0 {display:none;}
+  #histable { position:relative; top:0px; left:5px; width:100%; }
+  .hide { display:none; }
+
+</style>
+</head>
+<body>
+<div style="display:flex;  flex-wrap:wrap; background-color: #bdb;">
+<h1><a href="#">常用漢字表</a>
+  <span id="tab" class="main"><a href="#">本表</a> <a href="#p=appendix">付表</a> <a id="show_histable">変遷</a></span></h1>
+<div style="padding:5px; margin:0px; background-color:#bcb;"><!--style="position:fixed; right:0;top:0; padding:5px; margin:0; background-color:#bcb;"-->
+<select id="history">
+  <option value="all">全表示</option>
+  <option value="2020" selected>2020年 常用漢字 学年別配当表 改訂</option>
+  <option value="2010">2010年 常用漢字</option>
+  <option value="1989">1989年 常用漢字 学年別配当表 改訂</option>
+  <option value="1981">1981年 常用漢字</option>
+  <option value="1977">1977年 当用漢字 学年別配当表 改訂</option>
+  <option value="1973">1973年 当用漢字 音訓表 改訂</option>
+  <option value="1958">1946-1958年 当用漢字</option>
+</select><br/>
+  絞込: <input id="search" style="font-size:10pt; width:220px;" />
+  </div>
+</div>
+<div id="histable" class="hide">
+<div class="d">
+<table id="events0">
+<tr><th>年</th><th>告示</th><th>対象</th><th>内容</th></tr>
+<tr><td>・1946年</td><td>「<span class="h">当用漢字表</span>」</td><td>漢字表</td><td>1850字</td></tr>
+<tr><td>・1948年</td><td>「当用漢字音訓表」</td]><td>音訓表</td><td>3122音訓</a></td></tr>
+<tr><td>・1948年</td><td>「<span class="h">当用漢字別表</span>」</td><td><a href="#history=haito">配当表</a></td><td>教育漢字(小学校で学ぶ)881字</td></tr>
+<tr><td>・1949年</td><td>「当用漢字字体表」</td><td>漢字表</td><td>新字体・楷書体の採用</td></tr>
+<tr><td>・1954年</td><td>「当用漢字表 補正試案」(国語審議会)</td><td><a href="#history=hosei">漢字表</a></td><td>補正案、適用されず</td></tr>
+<tr><td>・1956年</td><td>「同音の漢字による書きかえ」(国語審議会)</a></td><td>-</td><td>⇒詳細：<a href="tojo-daiyo-.htm">代用字による書き換え</a></td></tr>
+<tr><td>・1957年</td><td>「教育漢字 筆順指導の手引き」</td><td>-</td><td></td></tr>
+<tr><td>・1958年</td><td>「<span class="h">学年別漢字配当表</span>」</td><td><a href="#history=haito">配当表</a></td><td>教育漢字の学年割当て</td></tr>
+<tr><td>・1973年</td><td>「当用漢字改定音訓表」</td><td><a href="#history=onkun73">音訓表</a></td><td>3938音訓 + 106熟字訓</td></tr>
+<tr><td>・1977年</td><td>「<span class="h">学年別漢字配当表</span>」改訂</td><td><a href="#history=haito">配当表</a></td><td>教育漢字996字 (115字増)</td></tr>
+<tr><td rowspan=2>・1981年</td><td rowspan=2>「<span class="h">常用漢字</span>」</td><td><a href="#history=joyo81">漢字表</a><td>1945字 (95字増)</td><tr><td><a href="#history=onkun81">音訓表</a></td><td>4086の音訓 + 110熟字訓</td></tr>
+<tr><td>・1989年</td><td>「学年別漢字配当表」改訂</td><td><a href="#history=haito">配当表</a></td><td>教育漢字1006字 (20字増・10字減)</td></tr>
+<tr><td rowspan=2>・2010年</td><td rowspan=2>「常用漢字」改定</td><td><a href="#history=joyo10">漢字表</a></td><td>2136字 (196字増・5字減)</td>
+  <tr><td><a href="#history=onkun10">音訓表</a></td><td>4388の音訓 + 116熟字訓</td></tr>
+<tr><td>・2020年</td><td>「学年別漢字配当表」改訂</td><td><a href="#history=haito">配当表</a></td><td>教育漢字1026字 (20字増)</td></tr>
+</table>
+
+<table id="events">
+<tr><th>できごと</th><th>内容</th></tr>
+<tr><td>1946年 「当用漢字表」</td><td><a href="#y=1958">1850字</a></td></tr>
+<tr><td>1948年 「当用漢字別表」</td><td>教育漢字881字</td></tr>
+<tr><td>1948年 「当用漢字音訓表」</td><td>3122の音訓</a></td></tr>
+<tr><td>1949年 「当用漢字字体表」</td><td>新字体の採用</td></tr>
+<tr><td>1958年 「学年別漢字配当表」</a></td><td>教育漢字の学年割当て</td></tr>
+<tr><td>1973年 「当用漢字改定音訓表」</td><td>3938の音訓 (<a href="#y=1973;r=diff">差分</a>)、<a href="#p=appendix;y=1973">106の熟字訓</a></td></tr>
+<tr><td>1977年 「学年別漢字配当表」改訂</td><td>教育漢字996字</td></tr>
+<tr><td>1981年 「常用漢字」</td><td>1945字(<a href="#y=1981;c=diff">追加95</a>・変更1)、4086の音訓(<a href="#y=1981;r=diff">追加8・削除2</a>)、110の熟字訓 (<a href="#p=appendix;y=1981;c=diff">追加4</a>)</td></tr>
+<tr><td>1989年 「学年別漢字配当表」改訂</a></td><td>教育漢字1006字</td></tr>
+<tr><td>2010年 「常用漢字」改定</td><td>2036字(<a href="#y=2010;c=diff">追加196・削除5</a>)、4388の音訓(<a href="#y=2010;r=diff">追加29・変更1・削除3</a>)<!-- 巻守並舞竜は誤記? -->、116の熟字訓(<a href="#p=appendix;y=2010;c=diff">追加6・変更5</a>)</td></tr>
+<tr><td>2020年 「学年別漢字配当表」改訂</a></td><td>教育漢字1026字</td></tr>
+</table>
+</div>
+</div>
+<hr/>
+<div id=joyo>Loading...</div>
+</body>
+<script>
+const $id = (id) => document.getElementById(id);
+const $q = (query, $dom) => [... ($dom ? $dom : document).querySelectorAll(query)];
+const $c = (cname, $dom) => [... ($dom ? $dom : document).getElementsByClassName(cname)];
+
+const getfile = (fname, cb) => {
+    const ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = () => {
+        if (ajax.readyState != 4) return;
+        if (ajax.status != 200) return;
+        cb(ajax);
+    };
+    ajax.open("GET", fname, true);
+    ajax.send(null);
+};
+
+String.prototype.toKatakana = function() {
+    return this.replace(/[ぁ-ゖ]/g, (match) => String.fromCharCode(match.charCodeAt(0) + 0x60));
+};
+
+const conv = {
+    hira: (s) => s.toLowerCase()
+        .replace(/[ァ-ヶ]/g, (match) => String.fromCharCode(match.charCodeAt(0) - 0x60))
+        .split("").filter(c => "「」『』/*#1234y:;+".indexOf(c) == -1).join(""),
+
+    seion: (a) => conv.hira(a).split("").map(c => {
+        let n = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょっ".indexOf(c);
+        if (n < 0) return c;
+        return "かきくけこさしすせそたちつてとはひふへほはひふへほやゆよつ".slice(n, n + 1);
+    }).join(""),
+};
+const dump_reading_list = () => {
+    let dicts = reading_list(idiom.table);
+    
+    $id("joyo").innerHTML = "<div id=kanjilist>" +
+        Object.keys(dicts).filter(v => dicts[v].length>1)// && dicts[v][0].n < 4)
+        .sort((a,b)=> dicts[a][0].r < dicts[b][0].r ? -1 : 1).map(key => {
+            return "<li class=kanji><a class=headword>" + key + "</a><span class=read>" + 
+                dicts[key].map(v => {
+                    if (v.r.match(/[ァ-ヶ]/)) {
+                        if (3 < v.r.length) v.doubt = true;
+                        if (2 == v.r.length && !v.r.match(/[ア-ワ][イウキクチツッンャュョ]/)) v.doubt = true;
+                        if (3 == v.r.length && !v.r.match(/[キギシジチニヒビピミリ][ャュョ][ンウクツッ]/)) v.doubt = true;
+                        return "<a "+(v.doubt ? "class=p":"") + " href='#q=" + v.r + "," + key + "'>" + v.r + "</a>"
+                            + "<span class=freq>" + (v.doubt ? "※":"") + "(" + v.n + ")</span>";
+                    } else {
+                        return "<a class=o href='#q=" + v.r + "," + key + "'>" + v.r + "</a>"
+                            + "<span class=freq>" +(v.doubt ? "※":"")+"(" + v.n + ")</span>"
+                    }
+                }).join("")+"</span>";
+        }).join("") + "</div>";
+};
+const reading_list = (table) => {
+    let dicts = {};
+    table.forEach(v => {
+        v.read.forEach((vread, i) => {
+            if (vread.slice(-1) == "#") return;
+            if (i != 0) {
+                var r = vread.split(":");
+                if (r.length != 2) return;
+                if (!r[0].match(/^[1-4]$/)) return;
+                var x = r.shift() - 1;
+                //console.log(r);
+                r = r[0].split("/");
+            } else {
+                var r = vread.split("/");
+                var x = 0;
+            }
+            if (4 < r.length + x) return;
+            r = r.map(r0 => r0.replace(/^([ァ-ヶ]+)[のは1-9?]+$/, "$1"));
+            let w = Array.from(v.word[0]);
+            w.forEach((c,i)=> {
+                if (i < x) return;
+                if (!r[i-x]) return;
+                let read0 = r[i-x];
+                if(read0.indexOf("*") != -1) return;
+                if (!dicts[c]) dicts[c] = {};
+                if (!dicts[c][read0]) dicts[c][read0] = 0;
+                dicts[c][read0]++;
+            });
+        });
+    });
+    Object.keys(dicts).forEach(c => {
+        dicts[c] = Object.keys(dicts[c]).map(v => {return {r:v, n:dicts[c][v]}; });
+        dicts[c].sort((a,b) => {
+            let bk = (b.r.match(/[ァ-ヶ]/));
+            let ak = (a.r.match(/[ァ-ヶ]/));
+            if (bk && !ak) return 1;
+            if (ak && !bk) return -1;
+            return (b.n - a.n);
+        });
+    });
+    return dicts;
+};
+
+
+
+let joyo = {};
+
+const onloader = () => {
+
+    const resort = () => {
+        if ($id("kanasort").checked)
+            return idiom.table.sort((a,b) => conv.seion(a.read[0]) < conv.seion(b.read[0]) ? -1 : 1);
+        if ($id("hansort").checked)
+            return idiom.table.sort((a,b) => a.word[0] < b.word[0] ? -1 : 1);
+        idiom.table.sort((a,b) => a.id - b.id);
+    };
+
+    const display_read = (r) => {
+        return r.map((r,i) => {
+            let rs = r.split("/");
+            //if (i) $read.append(",");
+            let x = rs.shift();
+            let prop = rs.pop().split("");
+            let rt = (t) => "r2010,r1981,r1973,r1948,,,".split(",").slice("DCBA#中高".indexOf(t))[0];
+            let $r = "<a href='#"+ x +"' class='" + prop.map(cl => rt(cl)).join(" ") + "'>";
+            let y = prop.filter(v => "ABCD".indexOf(v) != -1).join("");
+            let period = rt(y[0]).slice(1);
+            if (y.slice(-1) != "D") period += "-" + rt(String.fromCodePoint(y.charCodeAt(y.length-1)+1)).slice(1);
+            return $r + "<span class=y>" + period + "</span>" + x + "</a>";
+        }).join("");
+        
+        let spanning = (v,x) => v.split("/").map((c,i) => {
+            let css = "";
+            if (!x) x = 1;
+            if (c.match(/[ぁ-ゖ]/)) css = " class=o";
+            if (c.indexOf("*")!=-1) css = " class=s";
+            return '<a href="#q=' + (x + i) + ":" + c + '"' + css + '>' + c + "</a>";
+        }).join("");
+
+        let ret = [];
+        ret[0] = spanning(r[0]);//)).join("");
+        if (1 < r.length) {
+            ret[1] = r.slice(1).map(r1 => {
+                let x = parseInt(r1.split(":").shift());
+                return "<span class=variants>(" + r1.replace(/[ぁ-ヶ\/]+/, v => spanning(v, x)) + ")";
+            }).join("");
+        }
+        return ret.join("<br>");
+    };
+
+    const dump_row = (v,i) => {
+        if (!v.id) v.id = "none";
+        let row = [];
+        let obj = v;
+        const yclass = (y, period, prefix) => {
+            let ys = y.split("-");
+            let cs = period.filter(y => ys[0] <= y && (!ys[1] || y < ys[1])).map(y => prefix + y);
+            if (ys[1]) cs.push("obsolete");
+            return cs.join(" ");
+        };
+
+        let $c = obj.c.map(c => "<div class=c><span class=y>" + c.y + '</span>'
+                           + '<a>' + c.v + "</a>"
+                           + "</div>").join("");
+
+        let $grade = "<div class=grade>" + obj.g.map((g,i) => "<a class='"
+                               + yclass(g.y, [1958, 1977, 1989, 2020], "g") + "'>"
+                               + "<span class=y>" + g.y + "</span>" + (g.v == "7*" ? "備考*" : "小" + g.v) + "</a>")
+            .join("") + "</div>";
+        "<span class=y style='width:30px; float:left; word-wrap:break-word;'>"; //あとで適用予定
+        row.push("<div class=head>" + $c + $grade + "</div>");
+
+        let $read = obj.r.map((r,i) => {
+            let $r = {t:"", c: yclass(r.y, [1948, 1973, 1981, 2010], "r")};
+            const rt = (t) => "x,j,h".split(",").slice("DCBA#中高".indexOf(t))[0];
+            return "<a class='" + $r.c + "'>"
+                + "<span class=y>" + r.y + "</span><span class=v>" + r.v + "</span></a>";
+        }).join("");
+
+        if (0) {
+            return '<tr class="' + yclass(obj.c.slice(-1)[0].y, [1949, 1981, 2010], "c") + '">'
+                + [$id, $c, $grade, $read].join("") + "</tr>";
+            row.push("<span class=read>" + display_read(v.r) + "</span>");
+        }
+        row.push("<div class=read>" + $read + "</div>");
+
+        return "<div class='kanji "+  yclass(obj.c.slice(-1)[0].y, [1949, 1981, 2010], "c") + "'>" + row.join("") + "</div>";
+    };
+
+    const dump_arow = (obj) => {
+        let row = [];
+        const yclass = (y, period, prefix) => {
+            let ys = y.split("-");
+            let cs = period.filter(y => ys[0] <= y && (!ys[1] || y < ys[1])).map(y => prefix + y);
+            if (ys[1]) cs.push("obsolete");
+            return cs.join(" ");
+        };
+
+        let $w = obj.map(obj0 => "<div class='w " + yclass(obj0.y, [1973, 1981, 2010], "c") + "'>"
+                         + "<span class=y>" + obj0.y + '</span>'
+                         + obj0.w.map(w => '<a>' + w + "</a>").join("")
+                         + "</div>").join("");
+
+        row.push("<div class=head>" + $w + "</div>");
+
+        let $read = obj.map(obj0 => {
+            let $r = {t:"", c: yclass(obj0.y, [1973, 1981, 2010], "r")};
+            return "<a class='" + $r.c + "'>"
+                + "<span class=y>" + obj0.y + "</span><span class=v>" + obj0.r + "</span></a>";
+        }).join("");
+
+        row.push("<div class=read>" + $read + "</div>");
+
+        return "<div class='word'>" + row.join("") + "</div>";
+    };
+    
+    const draw_table = () => {
+
+        let subset = joyo.table;
+        let x = 0;
+        let head = [];
+
+        // dump result
+        $id("joyo").innerHTML = "<div>[<span id=hit></span>] " + head.join(" ") + "</div><div id=clist>"
+            + subset.slice(x, x + 3800).map((v, i) => dump_row(v, x + i + 1)).join("") + "</div>"
+            + "<div id=wlist>" + joyo.appendix.map((v, i) => dump_arow(v)).join("") + "</div>";
+    };
+
+    draw_table();
+
+    $q(".c a").map($dom => $dom.onclick = () => hash.toggle("c=" + $dom.innerText));
+    $q(".read a").map($dom => $dom.onclick = () => hash.toggle("r=" + $dom.innerText.split("\n").pop().split("-").join("")));
+    $q(".grade a").map($dom => $dom.onclick = () => hash.toggle("g=" + $dom.innerText.split("*").join("").slice(-1)));
+
+    // events
+    $id("search").onkeydown = (e) => {
+        if (e.keyCode != 13) return;
+        location.hash = "y=" + $id("history").value + ";" + $id("search").value;
+    };
+};
+
+let hash = {};
+hash.toggle = (param) => {
+    let key = param.split("=");
+    let ori = location.hash.slice(1).split(";").filter(v => v);
+    let ret = ori.filter(p => p.split("=").shift() != key[0]);
+    if (ori.indexOf(encodeURI(param)) == -1) ret.push(param);
+    location.hash = ret.join(";");
+};
+
+const main = () => {
+    getfile("joyo.json", (ajax) => {
+        joyo = JSON.parse(ajax.responseText);
+        if (location.href.indexOf("?debug") == -1)
+            joyo.table = joyo.table.filter(v => 0 < v.id);
+        onloader();
+        show_rows();
+    });
+    $id("history").onchange = () =>  hash.toggle("y=" + $id("history").value);
+    window.addEventListener('hashchange', () => { show_rows(); });
+    $id("show_histable").onclick = function() { $id("histable").classList.toggle("hide");
+                                               this.classList.toggle("shown"); };
+};
+
+const show_rows = () => {
+    let vals = decodeURI(location.hash.split("#").pop()).split(";");
+    let param = vals.reduce((param, v) => {
+        if (!v) return param;
+        let x = v.split("=");
+        if (x.length == 2) {
+            param[x[0]] = x[1];
+            return param;
+        }
+        if (v[0].match(/[0-9]/)) param.g = v;
+        else if (v[0].match(/[ぁ-ー]/)) param.r = v;
+        else param.c = v;
+        return param;
+    }, {});
+
+    $id("search").value = Object.keys(param).filter(k => "yp".indexOf(k) < 0).map(key => key + "=" + param[key]).join(";");
+    $id("history").value = param.y || "2020";
+
+    if (param.p == "appendix") {
+        $id("clist").style.display = "none";
+        $id("wlist").style.display = "";
+        $id("tab").classList = ["appendix"];
+    } else {
+        $id("wlist").style.display = "none";
+        $id("clist").style.display = "";
+        $id("tab").classList = ["main"];
+    }
+    const yearfilter = (y) => {
+        const $all = $q(".grade a, .read a, .kanji, .w", $id("joyo"));
+
+        if (y == "all") {
+            $all.map($dom => {
+                $dom.style.display = "";
+                $dom.classList.add("show");
+            });
+            return;
+        }
+        $all.map($dom => {
+            $dom.style.display = "none";
+            $dom.classList.remove("show");
+        });
+
+        const $selector = (val) => {
+            if (2010 == val) return ["a.g1989", " a.r2010", " div.c2010"];
+            if (1989 == val) return ["a.g1989", " a.r1981", " div.c1981"];
+            if (1981 == val) return ["a.g1977", " a.r1981", " div.c1981"];
+            if (1977 == val) return ["a.g1977", " a.r1973", " div.c1949", ".c1973"];
+            if (1973 == val) return ["a.g1958", " a.r1973", " div.c1949", ".c1973"];
+            if (1958 == val) return ["a.g1958", " a.r1948", " div.c1949"];
+            return ["a.g2020", "a.r2010", "div.c2010"];
+        };
+        $q($selector(y).join(",")).map($dom => $dom.classList.add("show"));
+    };
+
+    const readfilter = (r) => {
+        if (!r) return;
+        if (r != "diff") {
+            let rt = r.split("-").join("");
+            $c("kanji").filter($dom => {
+                let rs = $q(".read a.show .v", $dom).map($r => $r.innerText.split("\n").pop().split("-").join(""));
+                return rs.indexOf(rt) == -1;
+            }).map($dom => $dom.classList.remove("show"));
+            return;
+        }
+
+        let RHIS = [1948, 1973, 1981, 2010];
+        let CHIS = [1949, 1981, 2010];
+        let y = parseInt(param.y);
+        let idx = RHIS.indexOf(y);
+
+        if (idx <= 0) {
+            $c("kanji").map($dom => $dom.classList.remove("show"));
+            return;
+        }
+        
+        let newer = "r" + RHIS[idx];
+        let older = "r" + RHIS[idx - 1];
+        $c(newer, $id("clist")).filter($dom => $dom.classList.contains(older)).map($dom => $dom.classList.remove("show"));
+        $c(older, $id("clist")).filter($dom => !$dom.classList.contains(newer)).map($dom => $dom.classList.add("show"));
+        $c("kanji", $id("clist")).filter($dom => $q(".read .show", $dom).length==0).map($dom => $dom.classList.remove("show"));
+        
+        if (CHIS.indexOf(y) == -1) return;
+
+        older = CHIS[CHIS.indexOf(y) - 1];
+        $c("c" + y, $id("clist")).filter($dom => !$dom.classList.contains("c" + older)).map($dom => $dom.classList.remove("show"));
+    };
+
+    const charfilter = (c) => {
+        if (!c) return;
+        if (c != "diff") {
+            let bools = joyo.table.map(t => (t.c.some(tc => tc.v == c)));
+            $c("kanji").map(($dom, i) => { if (!bools[i]) $dom.classList.remove("show"); });
+            return;
+        }
+
+        if (param.p == "appendix") {
+            let newer = param.y;
+            let older = newer == "2010" ? "1981" : "1973";
+            $c("c" + older, $id("wlist")).map($dom => { $dom.classList.remove("show"); $dom.parentNode.parentNode.classList.remove("show"); });
+            console.log("c"+older);
+            //console.log($c("c" + newer).filter($dom => $dom.classList.contains("c" + older)).length);
+            return;
+        }
+        let newer = "c" + param.y;
+        let older = newer == "c2010" ? "c1981" : "c1949";
+
+        $c(newer, $id("clist")).filter($dom => $dom.classList.contains(older)).map($dom => $dom.classList.remove("show"));
+        $c(older, $id("clist")).filter($dom => !$dom.classList.contains(newer)).map($dom => $dom.classList.add("show"));
+    };
+
+    const gradefilter = (g) => {
+        if (!g) return;
+        $c("kanji").filter($dom => $q(".grade .show", $dom).every($g => $g.innerText.split("*").join("").slice(-1) != g))
+            .forEach($dom => $dom.classList.remove("show"));
+    };
+
+    yearfilter(param.y);
+    readfilter(param.r);
+    charfilter(param.c);
+    gradefilter(param.g);
+
+
+    $c("show").map($dom => $dom.style.display = "");
+    $id("hit").innerText = $q(".kanji.show").length + "字 " + $q(".kanji.show .read a.show").length + "音訓";
+
+
+    //$c("kanji")[126].scrollIntoView();
+    //$c("kanji")[126].style["border-color"] = "red";
+};
+
+
+main();
+
+/*ほしいきのう
+- y=1989&q=diff => (g1977 != g1989)
+- y=1973&q=diff => (r1973 && !r1948) || (!r1948 && r1973)
+~ y=1981&q=diff => (c1981 && !c1948)
+- y=1981&c=diff
+- y=2020&c=diff
+~ y=1981&q=diff&c!=diff
+- y=2020&g=3
+~ y=2020&g=*
+~ y=2020&g=
+- y=2020&r=キュウ
+~ y=2020&r=あ*
+~ y=2020&c=**
+- y=2020&q=字
+- y=2020&c=字
+- focus
+*/
+</script>
+</html>
