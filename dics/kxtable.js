@@ -67,7 +67,7 @@ $(function() {
         if (drawspecial(str)) [...Array(10)].map((x,idx) => {
             let page = ("0000" + (st + idx).toString(10)).slice(-4);
             const array = dkwucs.get("KX" + page);
-            const url = `https://www.kangxizidian.com/kangxi/${page}.gif`;
+            const url = `https://p.kangxizidian.com/kangxi/${page}.gif`;
             if (array.length)  $("#kxtable").show().append(`<h3><a href='${url}'>p.${page}</h3>`);
             array.map((v, idx) => {
                 show_cell([v], page, idx, $("<div>").addClass("cell").appendTo("#kxtable"));
@@ -97,7 +97,7 @@ $(function() {
             let c = array[code.slice(-3) * 1];
             let strucs = "u" + c.codePointAt(0).toString(16);//.toUpperCase();
             $("#ucs").append(`: <span><a href='//glyphwiki.org/wiki/${strucs}' target="_blank">${strucs}</a></span>`);
-            $("#ucs").append(`(<a href='https://www.kangxizidian.com/kangxi/${page}.gif' target="_blank">gif</a>)`);
+            $("#ucs").append(`(<a href='https://p.kangxizidian.com/kangxi/${page}.gif' target="_blank">gif</a>)`);
         });
     };
 
