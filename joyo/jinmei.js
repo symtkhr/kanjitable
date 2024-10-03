@@ -1,268 +1,5 @@
-const jinmei_memo = {
-"俐": [null, "康煕字典体は「悧」"],
-"堺": [null, "「界」のもと異体字"],
-"阪": [null, "「坂」のもと異体字"],
-"亘": ["亙", "「亙」はもと別字(実質旧字)"],
-"亙": ["亘", "「亘」はもと別字(実質新字)"],
-"尭": ["堯", "「堯」が正字(実質旧字)"],
-"堯": ["尭", "「堯」が正字(実質旧字)"],
-"槙": ["槇", "「槇」が正字(実質旧字)"],
-"槇": ["槙", "「槇」が正字(実質旧字)"],
-"渚": ["渚", "「渚」が正字(実質旧字)"],
-"渚": ["渚", "「渚」が正字(実質旧字)"],
-"猪": ["猪", "「猪」が正字(実質旧字)"],
-"猪": ["猪", "「猪」が正字(実質旧字)"],
-"琢": ["琢", "「琢」が正字(実質旧字)"],
-"琢": ["琢", "「琢」が正字(実質旧字)"],
-"祐": ["祐", "「祐」が正字(実質旧字)"],
-"祐": ["祐", "「祐」が正字(実質旧字)"],
-"禄": ["祿", "「祿」が正字(実質旧字)"],
-"祿": ["禄", "「祿」が正字(実質旧字)"],
-"禎": ["禎", "「禎」が正字(実質旧字)"],
-"禎": ["禎", "「禎」が正字(実質旧字)"],
-"穣": ["穰", "「穰」が正字(実質旧字)"],
-"穰": ["穣", "「穰」が正字(実質旧字)"],
-"遥": ["遙", "「遙」が正字(実質旧字)"],
-"遙": ["遥", "「遙」が正字(実質旧字)"],
-"巌": ["巖", "「巖」が正字(実質旧字)"],
-"巖": ["巌", "「巖」が正字(実質旧字)"],
-"萌": ["萠", "「萌」が正字(実質標準字体)"],
-"萠": ["萌", "「萌」が正字(実質標準字体)"],
-"凜": ["凛", "「凜」が正字(実質標準字体)"],
-"凛": ["凜", "「凜」が正字(実質標準字体)"],
-"晃": ["晄", "「晃」が正字(実質標準字体)"],
-"晄": ["晃", "「晃」が正字(実質標準字体)"],
-"徠": [null, "「来」(常用)とは別字扱いか？"],
-"栖": [null, "「棲」とは別字扱いか？"],
-"棲": [null, "「栖」とは別字扱いか？"],
-"祷": ["禱", "表外漢字字体表の簡易慣用字体"],
-"禱": ["祷", "表外漢字字体表の印刷標準字体"],
-"桧": ["檜", "表外漢字字体表では「檜」が印刷標準字体だが「桧」は簡易慣用字体ではない"],
-"檜": ["桧", "表外漢字字体表では「檜」が印刷標準字体だが「桧」は簡易慣用字体ではない"],
-"祢": ["禰", "表外漢字字体表では「禰」が印刷標準字体だが「祢」は簡易慣用字体ではない"],
-"禰": ["祢", "表外漢字字体表では「禰」が印刷標準字体だが「祢」は簡易慣用字体ではない"],
-"芦": [null, "表外漢字字体表では「蘆」が印刷標準字体だが人名用漢字ではない"],
-"裡": [null, "表外漢字字体表では「裏」の異体字とあるが、人名用漢字表では別字扱いか？"],
-"曽": ["曾", null],
-"弥": ["彌", null],
-"曾": ["曽", "旧字(2010)", true],
-"彌": ["弥", "旧字(2010)", true],
-"瘦": ["痩", "旧字(2010)", true],
-"亞": ["亜", "旧字", true],
-"惡": ["悪", "旧字", true],
-"爲": ["為", "旧字", true],
-"逸": ["逸", "旧字", true],
-"榮": ["栄", "旧字", true],
-"衞": ["衛", "旧字", true],
-"謁": ["謁", "旧字", true],
-"圓": ["円", "旧字", true],
-"緣": ["縁", "旧字", true],
-"應": ["応", "旧字", true],
-"櫻": ["桜", "旧字", true],
-"奧": ["奥", "旧字", true],
-"橫": ["横", "旧字", true],
-"溫": ["温", "旧字", true],
-"禍": ["禍", "旧字", true],
-"價": ["価", "旧字", true],
-"海": ["海", "旧字", true],
-"悔": ["悔", "旧字", true],
-"壞": ["壊", "旧字", true],
-"懷": ["懐", "旧字", true],
-"樂": ["楽", "旧字", true],
-"渴": ["渇", "旧字", true],
-"卷": ["巻", "旧字", true],
-"陷": ["陥", "旧字", true],
-"寬": ["寛", "旧字", true],
-"漢": ["漢", "旧字", true],
-"氣": ["気", "旧字", true],
-"祈": ["祈", "旧字", true],
-"器": ["器", "旧字", true],
-"僞": ["偽", "旧字", true],
-"戲": ["戯", "旧字", true],
-"虛": ["虚", "旧字", true],
-"峽": ["峡", "旧字", true],
-"狹": ["狭", "旧字", true],
-"響": ["響", "旧字", true],
-"曉": ["暁", "旧字", true],
-"勤": ["勤", "旧字", true],
-"謹": ["謹", "旧字", true],
-"勳": ["勲", "旧字", true],
-"薰": ["薫", "旧字", true],
-"惠": ["恵", "旧字", true],
-"揭": ["掲", "旧字", true],
-"鷄": ["鶏", "旧字", true],
-"藝": ["芸", "旧字", true],
-"擊": ["撃", "旧字", true],
-"縣": ["県", "旧字", true],
-"儉": ["倹", "旧字", true],
-"劍": ["剣", "旧字", true],
-"險": ["険", "旧字", true],
-"檢": ["検", "旧字", true],
-"圈": ["圏", "旧字", true],
-"驗": ["験", "旧字", true],
-"顯": ["顕", "旧字", true],
-"嚴": ["厳", "旧字", true],
-"恆": ["恒", "旧字", true],
-"黃": ["黄", "旧字", true],
-"廣": ["広", "旧字", true],
-"國": ["国", "旧字", true],
-"黑": ["黒", "旧字", true],
-"穀": ["穀", "旧字", true],
-"碎": ["砕", "旧字", true],
-"雜": ["雑", "旧字", true],
-"社": ["祉", "旧字", true],
-"視": ["視", "旧字", true],
-"兒": ["児", "旧字", true],
-"濕": ["湿", "旧字", true],
-"實": ["実", "旧字", true],
-"社": ["社", "旧字", true],
-"者": ["者", "旧字", true],
-"煮": ["煮", "旧字", true],
-"壽": ["寿", "旧字", true],
-"收": ["収", "旧字", true],
-"臭": ["臭", "旧字", true],
-"從": ["従", "旧字", true],
-"澁": ["渋", "旧字", true],
-"縱": ["縦", "旧字", true],
-"獸": ["獣", "旧字", true],
-"祝": ["祝", "旧字", true],
-"暑": ["暑", "旧字", true],
-"署": ["署", "旧字", true],
-"緖": ["緒", "旧字", true],
-"諸": ["諸", "旧字", true],
-"敍": ["叙", "旧字", true],
-"將": ["将", "旧字", true],
-"祥": ["祥", "旧字", true],
-"涉": ["渉", "旧字", true],
-"燒": ["焼", "旧字", true],
-"奬": ["奨", "旧字", true],
-"條": ["条", "旧字", true],
-"狀": ["状", "旧字", true],
-"淨": ["浄", "旧字", true],
-"乘": ["乗", "旧字", true],
-"剩": ["剰", "旧字", true],
-"疊": ["畳", "旧字", true],
-"孃": ["嬢", "旧字", true],
-"讓": ["譲", "旧字", true],
-"釀": ["醸", "旧字", true],
-"神": ["神", "旧字", true],
-"眞": ["真", "旧字", true],
-"寢": ["寝", "旧字", true],
-"愼": ["慎", "旧字", true],
-"盡": ["尽", "旧字", true],
-"粹": ["粋", "旧字", true],
-"醉": ["酔", "旧字", true],
-"穗": ["穂", "旧字", true],
-"瀨": ["瀬", "旧字", true],
-"齊": ["斉", "旧字", true],
-"靜": ["静", "旧字", true],
-"攝": ["摂", "旧字", true],
-"節": ["節", "旧字", true],
-"專": ["専", "旧字", true],
-"戰": ["戦", "旧字", true],
-"纖": ["繊", "旧字", true],
-"禪": ["禅", "旧字", true],
-"祖": ["祖", "旧字", true],
-"爭": ["争", "旧字", true],
-"壯": ["壮", "旧字", true],
-"莊": ["荘", "旧字", true],
-"搜": ["捜", "旧字", true],
-"巢": ["巣", "旧字", true],
-"裝": ["装", "旧字", true],
-"僧": ["僧", "旧字", true],
-"層": ["層", "旧字", true],
-"騷": ["騒", "旧字", true],
-"增": ["増", "旧字", true],
-"藏": ["蔵", "旧字", true],
-"憎": ["憎", "旧字", true],
-"臟": ["臓", "旧字", true],
-"贈": ["贈", "旧字", true],
-"卽": ["即", "旧字", true],
-"帶": ["帯", "旧字", true],
-"滯": ["滞", "旧字", true],
-"瀧": ["滝", "旧字", true],
-"單": ["単", "旧字", true],
-"嘆": ["嘆", "旧字", true],
-"團": ["団", "旧字", true],
-"彈": ["弾", "旧字", true],
-"晝": ["昼", "旧字", true],
-"鑄": ["鋳", "旧字", true],
-"著": ["著", "旧字", true],
-"徵": ["徴", "旧字", true],
-"聽": ["聴", "旧字", true],
-"懲": ["懲", "旧字", true],
-"廳": ["庁", "旧字", true],
-"鎭": ["鎮", "旧字", true],
-"轉": ["転", "旧字", true],
-"傳": ["伝", "旧字", true],
-"都": ["都", "旧字", true],
-"燈": ["灯", "旧字", true],
-"盜": ["盗", "旧字", true],
-"稻": ["稲", "旧字", true],
-"德": ["徳", "旧字", true],
-"突": ["突", "旧字", true],
-"難": ["難", "旧字", true],
-"拜": ["拝", "旧字", true],
-"梅": ["梅", "旧字", true],
-"賣": ["売", "旧字", true],
-"髮": ["髪", "旧字", true],
-"拔": ["抜", "旧字", true],
-"繁": ["繁", "旧字", true],
-"晚": ["晩", "旧字", true],
-"卑": ["卑", "旧字", true],
-"祕": ["秘", "旧字", true],
-"碑": ["碑", "旧字", true],
-"賓": ["賓", "旧字", true],
-"敏": ["敏", "旧字", true],
-"侮": ["侮", "旧字", true],
-"福": ["福", "旧字", true],
-"拂": ["払", "旧字", true],
-"佛": ["仏", "旧字", true],
-"勉": ["勉", "旧字", true],
-"步": ["歩", "旧字", true],
-"墨": ["墨", "旧字", true],
-"飜": ["翻", "旧字", true],
-"每": ["毎", "旧字", true],
-"萬": ["万", "旧字", true],
-"默": ["黙", "旧字", true],
-"藥": ["薬", "旧字", true],
-"與": ["与", "旧字", true],
-"搖": ["揺", "旧字", true],
-"樣": ["様", "旧字", true],
-"謠": ["謡", "旧字", true],
-"來": ["来", "旧字", true],
-"賴": ["頼", "旧字", true],
-"覽": ["覧", "旧字", true],
-"欄": ["欄", "旧字", true],
-"龍": ["竜", "旧字(1981)", true],
-"虜": ["虜", "旧字", true],
-"綠": ["緑", "旧字", true],
-"淚": ["涙", "旧字", true],
-"壘": ["塁", "旧字", true],
-"類": ["類", "旧字", true],
-"禮": ["礼", "旧字", true],
-"歷": ["歴", "旧字", true],
-"曆": ["暦", "旧字", true],
-"練": ["練", "旧字", true],
-"鍊": ["錬", "旧字", true],
-"郞": ["郎", "旧字", true],
-"朗": ["朗", "旧字", true],
-"廊": ["廊", "旧字", true],
-"錄": ["録", "旧字", true],
-"薗": ["園", "異体字", true],
-"駈": ["駆", "異体字", true],
-"嶋": ["島", "異体字", true],
-"盃": ["杯", "異体字", true],
-"冨": ["富", "異体字", true],
-"峯": ["峰", "異体字", true],
-"埜": ["野", "異体字", true],
-"凉": ["涼", "異体字", true],
-};
-
-const jis_his = {
-    "2004": "逢芦飴溢茨鰯淫迂厩噂餌襖迦牙廻恢晦蟹葛鞄釜翰翫徽祇汲灸笈卿饗僅喰櫛屑粂祁隙倦捲牽鍵諺巷梗膏鵠甑叉榊薩鯖錆鮫餐杓灼酋楯薯藷哨鞘杖蝕訊逗摺撰煎煽穿箭詮噌遡揃遜腿蛸辿樽歎註瀦捗槌鎚辻挺鄭擢溺兎堵屠賭瀞遁謎灘楢禰牌這秤駁箸叛挽誹樋稗逼謬豹廟瀕斧蔽瞥蔑篇娩鞭庖蓬鱒迄儲餅籾爺鑓愈猷漣煉簾榔冤叟咬嘲囀徘扁棘橙狡甕甦疼祟竈筵篝腱艘芒虔蜃蠅訝靄靱騙鴉屢俱剝𠮟吞噓姸屛幷瘦繫",
-};
-const jinmei_his = {
+const JinmeiIngredients = {
+    history: {
     "1951": "丑丞之乃也亘亦亥亨亮伊匡卯只吾呂哉嘉圭奈宏寅巌巳庄弘弥彦悌惣敦昌晋智暢晃朋桂桐楠橘欣欽毅浩淳熊爾猪玲琢瑞睦磯祐禄禎稔穣綾聡肇胤艶蔦藤蘭虎蝶輔辰郁酉錦鎌靖須馨駒鯉鯛鶴鹿麿亀仙尚杉甚磨斉龍",
     "1976": "佑允冴喬怜旭杏梓梢梨沙渚瑠瞳紘紗絢翠耶芙茜葵藍那阿隼鮎悠",
     "1981": "伍伶侑尭孟峻嵩嶺巴彬惟惇慧斐旦昂李栗槙楓汐洸洵渥瑛瑶璃甫皓眸矩碧笹緋翔脩苑茉莉萌萩蓉蕗虹諒赳迪遥遼霞頌駿鳩鷹",
@@ -278,73 +15,114 @@ const jinmei_his = {
     "2010": "勺錘銑脹匁",
     "2015": "巫",
     "2017": "渾",
-};
-
-const joyo_his = {
+    },
+    history_joyo: {
     "1981": "仙尚杉甚磨斉竜悠",
     "2010": "挨曖宛嵐畏萎椅彙茨咽淫唄鬱怨媛艶旺岡臆俺苛牙瓦楷潰諧崖蓋骸柿顎葛釜鎌韓玩伎亀毀畿臼嗅巾僅錦惧串窟熊詣憬稽隙桁拳鍵舷股虎錮勾梗喉乞傲駒頃痕沙挫采塞埼柵刹拶斬恣摯餌鹿𠮟嫉腫呪袖羞蹴憧拭尻芯腎須裾凄醒脊戚煎羨腺詮箋膳狙遡曽爽痩踪捉遜汰唾堆戴誰旦綻緻酎貼嘲捗椎爪鶴諦溺塡妬賭藤瞳栃頓貪丼那奈梨謎鍋匂虹捻罵剝箸氾汎阪斑眉膝肘訃阜蔽餅璧蔑哺蜂貌頰睦勃昧枕蜜冥麺冶弥闇喩湧妖瘍沃拉辣藍璃慄侶瞭瑠呂賂弄籠麓脇"
+    },
+    pair: "亘亙|凜凛|尭堯|巌巖|晃晄|桧檜|槙槇|渚渚|猪猪|琢琢|祐祐|祢禰|祷禱|禄祿|禎禎|穣穰|萌萠|遙遥",
+    appendix: "乘乗|亞亜|佛仏|來来|傳伝|僞偽|價価|儉倹|兒児|冨富|凉涼|剩剰|劍剣|勳勲|卷巻|卽即|單単|嚴厳|圈圏|國国|圓円|團団|埜野|增増|壘塁|壞壊|壯壮|壽寿|奧奥|奬奨|孃嬢|寢寝|實実|寬寛|將将|專専|峯峰|峽峡|嶋島|巢巣|帶帯|廣広|廳庁|彈弾|彌弥|從従|徵徴|德徳|恆恒|惠恵|惡悪|愼慎|應応|懷懐|戰戦|戲戯|拂払|拔抜|拜拝|揭掲|搖揺|搜捜|擊撃|攝摂|收収|敍叙|晚晩|晝昼|曆暦|曉暁|曾曽|條条|榮栄|樂楽|樣様|橫横|檢検|櫻桜|步歩|歷歴|每毎|氣気|涉渉|淚涙|淨浄|渴渇|溫温|滯滞|澁渋|濕湿|瀧滝|瀨瀬|燈灯|燒焼|爭争|爲為|狀状|狹狭|獸獣|疊畳|瘦痩|盃杯|盜盗|盡尽|眞真|碎砕|祕秘|禪禅|禮礼|稻稲|穗穂|粹粋|綠緑|緖緒|緣縁|縣県|縱縦|纖繊|聽聴|臟臓|與与|莊荘|萬万|薗園|薰薫|藏蔵|藝芸|藥薬|虛虚|衞衛|裝装|覽覧|謠謡|讓譲|賣売|賴頼|轉転|郞郎|醉酔|釀醸|錄録|鍊錬|鎭鎮|鑄鋳|陷陥|險険|雜雑|靜静|顯顕|飜翻|駈駆|騷騒|驗験|髮髪|鷄鶏|黃黄|黑黒|默黙|齊斉|龍竜|欄欄|廊廊|朗朗|虜虜|類類|神神|祥祥|福福|諸諸|都都|侮侮|僧僧|勉勉|勤勤|卑卑|嘆嘆|器器|墨墨|層層|悔悔|憎憎|懲懲|敏敏|暑暑|梅梅|海海|漢漢|煮煮|碑碑|社社|祈祈|祖祖|祝祝|禍禍|穀穀|突突|節節|練練|繁繁|署署|者者|臭臭|著著|視視|謁謁|謹謹|賓賓|贈贈|逸逸|難難|響響",
+    memo: `
+亘亙:「亙」「亘」はもと別字
+尭堯:「堯」が正字(実質旧字)
+槙槇:「槇」が正字(実質旧字)
+渚渚:「渚」が正字(実質旧字)
+猪猪:「猪」が正字(実質旧字)
+琢琢:「琢」が正字(実質旧字)
+祐祐:「祐」が正字(実質旧字)
+禄祿:「祿」が正字(実質旧字)
+禎禎:「禎」が正字(実質旧字)
+穰穣:「穰」が正字(実質旧字)
+遙遥:「遙」が正字(実質旧字)
+巖巌:「巖」が正字(実質旧字)
+萠萌:「萌」が正字(実質標準字体)
+凛凜:「凜」が正字(実質標準字体)
+晄晃:「晃」が正字(実質標準字体)
+祷禱:表外漢字字体表の簡易慣用字体/印刷標準字体
+桧檜:表外漢字字体表では「檜」が印刷標準字体だが「桧」は簡易慣用字体ではない
+祢禰:表外漢字字体表では「禰」が印刷標準字体だが「祢」は簡易慣用字体ではない
+棲栖:「棲」「栖」は別字扱い？
+芦:表外漢字字体表では「蘆」が印刷標準字体だが人名用漢字ではない
+裡:表外漢字字体表では「裏」の異体字とあるが、人名用漢字表では別字扱い？
+堺:「界」(常用)のもと異体字
+阪:「坂」(常用)のもと異体字
+徠:「来」(常用)とは別字扱い？
+俐:「悧」とは別字扱い？
+薗駈嶋盃冨峯埜凉:異体字
+曾彌瘦:旧字(2010)
+龍:旧字(1981)
+亞惡爲逸榮衞謁圓緣應櫻奧橫溫禍價海悔壞懷樂渴卷陷寬漢氣祈器僞戲虛峽狹響曉勤謹勳薰惠揭鷄藝擊縣儉劍險檢圈驗顯嚴恆黃廣國黑穀碎雜社視兒濕實者煮壽收臭從澁縱獸祝暑署緖諸敍將祥涉燒奬條狀淨乘剩疊孃讓釀神眞寢愼盡粹醉穗瀨齊靜攝節專戰纖禪祖爭壯莊搜巢裝僧層騷增藏憎臟贈卽帶滯瀧單嘆團彈晝鑄著徵聽懲廳鎭轉傳都燈盜稻德突難拜梅賣髮拔繁晚卑祕碑賓敏侮福拂佛勉步墨飜每萬默藥與搖樣謠來賴覽欄虜綠淚壘類禮歷曆練鍊郞朗廊錄:旧字
+`,
 };
 
-const $id = (id) => document.getElementById(id);
-const $q = (query, $dom) => [... ($dom ? $dom : document).querySelectorAll(query)];
-const $c = (cname, $dom) => [... ($dom ? $dom : document).getElementsByClassName(cname)];
-const $new = (tag) =>  document.createElement(tag);
-
-const get_history = (c, table) => Object.keys(table)
-      .find(key => table[key].indexOf(c) != -1);
-
-let jintable = [];
-let main = () => {
-    jintable = Object.keys(jinmei_his).map(key => {
-        if (key.indexOf("reject") != -1) return;
-        return jinmei_his[key].split("").map(c => {
-            if (c == "龍" && key == "1981許") return;
-            let desc = jinmei_memo[c] || [];
-            let itaiji = desc[0] || "";
-            let memo = desc[1] || "";
-            let fuhyo = desc && desc[2];
-            let out = get_history(c, joyo_his);
-            let bushu = (basics.find(row => row[0] == c) || []).slice(1,2)[0];
-            return {c:c, bushu:bushu, itaiji:itaiji, act:key, out:out, memo:memo, fuhyo:fuhyo};
+let jintable = (() => {
+    let src = JinmeiIngredients;
+    let jmemo = src.memo.split("\n").map(v => v.split(":"));
+    let jpair = src.pair.split("|");
+    let jappendix = src.appendix.split("|");
+    return Object.entries(src.history).map(([act,v]) => {
+        if (act.indexOf("reject") != -1) return;
+        return v.split("").map(c => {
+            if (c == "龍" && act == "1981許") return;
+            let itaiji = [...jpair, ...jappendix].find(v=>v.indexOf(c)!=-1) || ""
+            let memo = jmemo.find(v=>v[0].indexOf(c)!=-1) || [];
+            let fuhyo = jappendix.find(v=>v.indexOf(c) == 0);
+            let out = Object.entries(src.history_joyo).find(([key,v]) => v.indexOf(c) != -1) || [];
+            return {c:c, act:act, out:out[0], fuhyo:fuhyo,
+                    itaiji:itaiji.split(c).join(""), memo:(memo[1]||"")};
         });
-    }).reduce((sum,row)=>sum.concat(row)).filter(v=>v);
+    })
+})().reduce((sum,row)=>sum.concat(row)).filter(v=>v);
 
+let main = () => {
+    const $id = (id) => document.getElementById(id);
+    const $q = (query, $dom) => [... ($dom ? $dom : document).querySelectorAll(query)];
+    const $c = (cname, $dom) => [... ($dom ? $dom : document).getElementsByClassName(cname)];
+    const $new = (tag) =>  document.createElement(tag);
+    const STROKES = $id("radicalstrokes").innerText.split("|").map(s=>s.trim().split(":"));
+
+    let show_rows = () => {
+        $id("jinmei").innerText = "";
+        $id("jinmei2").innerText = "";
+        sorttable(decodeURI(location.hash.split("#").pop()));
+        let count = 0;
+        jintable.filter(v=>!v.fuhyo).map(v => {
+            let $tr = $new("tr");
+            $id("jinmei").appendChild($tr);
+            if (!v.out) count++;
+            let no = (!v.out ? count : "-" );
+            let his = v.act + (v.out ? ("〜" + v.out) : "");
+            $tr.innerHTML = [no, v.c, v.bushu, v.itaiji, his, v.memo].map(s => "<td>" + s + "</td>").join("");
+            if (v.out) $tr.style.backgroundColor = "#ccc";
+        });
+        jintable.filter(v=>v.fuhyo).map((v,no) => {
+            let $tr = $new("tr");
+            $id("jinmei2").appendChild($tr);
+            let his = v.act + (v.out ? ("〜" + v.out) : "");
+            $tr.innerHTML = [no + 1, v.c, v.bushu, v.itaiji, his, v.memo].map(s => "<td>" + s + "</td>").join("");
+            if (v.out) $tr.style.backgroundColor = "#ccc";
+        });
+    };
+
+    let sorttable = (v) => {
+        if (!v || v == "bushu") return jintable.sort((a,b)=> {
+            if (a.bushu[0] == b.bushu[0]) return parseInt(a.bushu.slice(1)) - parseInt(b.bushu.slice(1));
+            return a.bushu[0] < b.bushu[0] ? -1:1;
+        });
+        if (v == "act") return jintable.sort((a,b)=> a.act < b.act ? -1 : 1);
+        if (v == "out") return jintable.sort((a,b)=> (a.out||"") < (b.out||"") ? -1 : 1);
+        if (v == "strokes") return jintable.sort((a,b) => a.bushu.split("/").pop() - b.bushu.split("/").pop());
+        if (v == "itaiji") jintable.sort((a,b)=>(a.itaiji||"･")<(b.itaiji||"･")?-1:1);
+    };
+
+    jintable.map(v => v.bushu = ((STROKES||[]).find(row => row[0] == v.c) || []).slice(1,2)[0]);
     show_rows();
+    window.addEventListener('hashchange', () => { show_rows(); });
 };
 
-let show_rows = () => {
-    $id("jinmei").innerText = "";
-    $id("jinmei2").innerText = "";
-    sorttable(decodeURI(location.hash.split("#").pop()));
-    let count = 0;
-    jintable.filter(v=>!v.fuhyo).map(v => {
-        let $tr = $new("tr");
-        $id("jinmei").appendChild($tr);
-        if (!v.out) count++;
-        let no = (!v.out ? count : "-" );
-        let his = v.act + (v.out ? ("〜" + v.out) : "");
-        $tr.innerHTML = [no, v.c, v.bushu, v.itaiji, his, v.memo].map(s => "<td>" + s + "</td>").join("");
-        if (v.out) $tr.style.backgroundColor = "#ccc";
-    });
-    jintable.filter(v=>v.fuhyo).map((v,no) => {
-        let $tr = $new("tr");
-        $id("jinmei2").appendChild($tr);
-        let his = v.act + (v.out ? ("〜" + v.out) : "");
-        $tr.innerHTML = [no + 1, v.c, v.bushu, v.itaiji, his, v.memo].map(s => "<td>" + s + "</td>").join("");
-        if (v.out) $tr.style.backgroundColor = "#ccc";
-    });
-};
+if (typeof window == "undefined" && module) {
+    module.exports = jintable;
+} else {
+    window.onload = main;
+}
 
-let sorttable = (v) => {
-    if (!v || v == "bushu") return jintable.sort((a,b)=> {
-        if (a.bushu[0] == b.bushu[0]) return parseInt(a.bushu.slice(1)) - parseInt(b.bushu.slice(1));
-        return a.bushu[0] < b.bushu[0] ? -1:1;
-    });
-    if (v == "act") return jintable.sort((a,b)=> a.act < b.act ? -1 : 1);
-    if (v == "out") return jintable.sort((a,b)=> (a.out||"") < (b.out||"") ? -1 : 1);
-    if (v == "strokes") return jintable.sort((a,b) => a.bushu.split("/").pop() - b.bushu.split("/").pop());
-    if (v == "itaiji") jintable.sort((a,b)=>(a.itaiji||"･")<(b.itaiji||"･")?-1:1);
-};
-
-window.onload = () => main();
-window.addEventListener('hashchange', () => { show_rows(); });

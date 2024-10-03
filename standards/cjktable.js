@@ -10,8 +10,10 @@ window.onload = () => {
         ["統合拡張F", 0x2ceb0, 0x2ebef],
         ["統合拡張G", 0x30000, 0x3134f],
         ["統合拡張H", 0x31350, 0x323af],
+        ["統合拡張I", 0x2ebf0, 0x2ee5f],
         ["互換",       0xf900,  0xfaff],
         ["互換補助",  0x2f800, 0x2fa1d],
+        ["部首",       0x2e80,  0x2fdf],
     ];
 
     const $id = e => document.getElementById(e);

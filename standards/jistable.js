@@ -1379,7 +1379,70 @@ const jistable = {
 ],
 };
 
-window.onload = () => {
+let jisx = {};
+jisx.table = jistable;
+
+jisx.iso2022 = (m, k, t) => (k + 0x20) * 0x100 + (t + 0x20);
+jisx.euc = (m, k, t) => ((k + 0xa0) * 0x100 + (t + 0xa0) + (m == 2 ? 0x8f0000 : 0));
+jisx.sjis = (m, k, t) => {
+    if (jisx.identify(m, k) == "X0212") return -1;
+    const seq = (k - 1) * 94 + (t - 1);
+    const c1 = parseInt(seq / 188);
+    const c2 = seq % 188;
+    const p2 = ((m, k) => {
+        if (m != 2) return 0;
+        if (k <= 5) return 0x6f;
+        if (k <= 15) return 0x6c;
+        return 0xd;
+    })(m, k);
+    return (c1 + (c1 < 31 ? 129 : 193) + p2) * 0x100 + c2 + (c2 < 63 ? 64 : 65);
+};
+jisx.identify = (m, k, t) => {
+    if (!m) return "X0208";
+    let level = jisx.level(m, k, t || 1);
+    if (level < 0) return "X0212";
+    if (level < 3) return "X0208";
+    return "X0213";
+}
+
+jisx.level = (m, k, t) => {
+    let inrange = (v, min, max) => max ? (min <= v && v <= max) : (v == min);
+    if (m == 2) return [[1], [3, 5], [8], [12, 15], [78, 94]]
+        .some(r => inrange(k, ...r)) ? 4 : -1;
+
+    // case: m == 1
+    if ([[9, 15], [85, 94]].some(r => inrange(k, ...r))) return 3;
+    const level3 = {
+        2: [[15,25], [34,41], [49,59], [75,81], [90,93]],
+        3: [[1,15], [26,32], [59,64], [91,94]],
+        4: [[84,91]],
+        5: [[87,94]],
+        6: [[25,32], [57,94]],
+        7: [[34,48], [82,94]],
+        8: [[33,62], [71,92]],
+        47: [[52,94]],
+        84: [[07,94]],
+    }[k] || [];
+    return level3.some(r => inrange(t, ...r)) ? 3 : (k < 48 ? 1 : 2);
+};
+
+jisx.search = c => {
+    let uni = c.codePointAt(0);
+    if (uni < 0x80) return [];
+    let jis = Object.keys(jisx.table).map(key => {
+        let idx = jisx.table[key].indexOf(uni) + 1;
+        return idx ? (key + "_" + ("0" + idx).slice(-2)) : null;
+    }).filter(v => v);
+    return jis;
+};
+
+
+let onload = () => {
+    const $id = e => document.getElementById(e);
+    const $new = e => document.createElement(e);
+    const $tag = e => [... document.getElementsByTagName(e)];
+    const $q = e => [... document.querySelectorAll(e)];
+    const $name = e => [... document.getElementsByName(e)];
 
     const showcode = (codetype, unicode, mkt) => {
         switch(codetype) {
@@ -1391,60 +1454,14 @@ window.onload = () => {
         case "kuten":
             return (mkt.filter(e => e).join("-"));
         case "sjis":
-            return (sjis(mkt[0], mkt[1], mkt[2]).toString(16));
+            return (jisx.sjis(mkt[0], mkt[1], mkt[2]).toString(16));
         case "iso2022":
-            return (iso2022(mkt[0], mkt[1], mkt[2]).toString(16));
+            return (jisx.iso2022(mkt[0], mkt[1], mkt[2]).toString(16));
         case "euc":
-            return (euc(mkt[0], mkt[1], mkt[2]).toString(16));
+            return (jisx.euc(mkt[0], mkt[1], mkt[2]).toString(16));
         }
     };
 
-    const sjis = (m, k, t) => {
-        if (identify(m, k) == "X0212") return -1;
-        const seq = (k - 1) * 94 + (t - 1);
-        const c1 = parseInt(seq / 188);
-        const c2 = seq % 188;
-        const p2 = ((m, k) => {
-            if (m != 2) return 0;
-            if (k <= 5) return 0x6f;
-            if (k <= 15) return 0x6c;
-            return 0xd;
-        })(m, k);
-        return (c1 + (c1 < 31 ? 129 : 193) + p2) * 0x100 + c2 + (c2 < 63 ? 64 : 65);
-    };
-
-    const euc = (m, k, t) => ((k + 0xa0) * 0x100 + (t + 0xa0) + (m == 2 ? 0x8f0000 : 0));
-    const iso2022 = (m, k, t) => (k + 0x20) * 0x100 + (t + 0x20);
-
-    const identify = (m, k, t) => {
-        if (!m) return "X0208";
-
-        const jisx0213 = (m == 1) ? [[9, 15], [85, 94]] : [1, [3, 5], 8, [12, 15], [78, 94]];
-        if (jisx0213.some(e => (typeof(e) == "number") ? (e == k) : ((e[0] <= k) && (k <= e[1])))) return "X0213";
-        if (m == 2) return "X0212";
-
-        const level3 = {
-            2: [[15,25], [34,41], [49,59], [75,81], [90,93]],
-            3: [[1,15], [26,32], [59,64], [91,94]],
-            4: [[84,91]],
-            5: [[87,94]],
-            6: [[25,32], [57,94]],
-            7: [[34,48], [82,94]],
-            8: [[33,62], [71,92]],
-            47: [[52,94]],
-            84: [[07,94]],
-        }[k];
-        if (!t || !level3) return "X0208";
-        
-        return level3.some(e => (e[0] <= t) && (t <= e[1])) ? "X0213" : "X0208";
-    };
-
-    const $id = e => document.getElementById(e);
-    const $new = e => document.createElement(e);
-    const $tag = e => [... document.getElementsByTagName(e)];
-    const $q = e => [... document.querySelectorAll(e)];
-    const $name = e => [... document.getElementsByName(e)];
-    
     const redraw = (key) => {
         $id("jistable").innerHTML = "";
 
@@ -1455,7 +1472,7 @@ window.onload = () => {
                 $tr.appendChild($new("td"));
             }
         }
-        if (!jistable[key]) key = "p1_01";
+        if (!jisx.table[key]) key = "p1_01";
 
         $q("a.selected").forEach($a => $a.classList.remove("selected"));
         $q("a").find($a => $a.href.split("#").pop() == key).classList.add("selected");
@@ -1463,7 +1480,7 @@ window.onload = () => {
         $q("#jistable td").forEach(($td, idx) => {
             if ((0 < idx) && (idx <= 94)) {
                 return draw_char($td,
-                                 jistable[key][idx - 1],
+                                 jisx.table[key][idx - 1],
                                  [(key + "_" + idx)]);
             }
             let $c = $new("span");
@@ -1486,7 +1503,7 @@ window.onload = () => {
             $code.classList.add('c');
             $dom.appendChild($code);
             let mkt = code.slice(1).split("_").map(e => parseInt(e, 10));
-            if (uni) $code.classList.add(identify(mkt[0], mkt[1], mkt[2]));
+            if (uni) $code.classList.add(jisx.identify(mkt[0], mkt[1], mkt[2]));
             $code.textContent = showcode($name("code").find($radio => $radio.checked).value, uni, mkt);
         });
         
@@ -1506,17 +1523,11 @@ window.onload = () => {
     const draw_result = () => {
         $id("result").innerHTML = "";
         Array.from($id("search").value).map(c => {
-            let uni = c.codePointAt(0);
-            if (uni < 0x80) return;
-
-            let jis = Object.keys(jistable).map(key => {
-                let idx = jistable[key].indexOf(uni) + 1;
-                return idx ? (key + "_" + idx) : null;
-            }).filter(v => v);
-
+            let jis = jisx.search(c);
+            if (jis.length == 0) return;
             let $div = $new("div");
             $id("result").appendChild($div);
-            return draw_char($div, uni, jis);
+            return draw_char($div, c.codePointAt(0), jis);
         });
     };
 
@@ -1535,7 +1546,7 @@ window.onload = () => {
                 let $a = $new("a");
                 $a.textContent = ku;
                 $a.setAttribute("href", "#p" + men + "_" + ku);
-                $a.classList.add(identify(men, i + 1));
+                $a.classList.add(jisx.identify(men, i + 1));
 
                 $div.innerHTML += " ";
                 $div.appendChild($a);
@@ -1583,3 +1594,9 @@ window.onload = () => {
         draw_result();
     };
 };
+
+if (typeof window == "undefined" && module) {
+    module.exports = jisx;
+} else {
+    window.onload = onload;
+}
